@@ -43,6 +43,8 @@ presence.on("UpdateData", async () => {
 		presenceData.state = "⚠️ Submitting a Request";
 	else if (document.location.hostname.includes("support"))
 		presenceData.state = "💡 Support";
+	else if (document.location.hostname.includes("/mission/sat"))
+		presenceData.state = "📝 SAT Test-Prep";
 	else if (document.location.pathname.split("/").length < 3) {
 		presenceData.state = `📖 ${
 			document.querySelector("._aemo2b3").textContent
