@@ -2,9 +2,9 @@ const presence = new Presence({
 		clientId: "721748388143562852",
 	}),
 	strings = presence.getStrings({
-		play: "presence.playback.playing",
-		pause: "presence.playback.paused",
-		browsing: "presence.activity.browsing",
+		play: "general.playing",
+		pause: "general.paused",
+		browsing: "general.browsing",
 	}),
 	media: MediaObj = {
 		// anyone is welcome to suggest more metadata via GH issues
@@ -65,9 +65,7 @@ presence.on("UpdateData", async () => {
 					media.album = null;
 
 				presenceData.details =
-					(media.title
-						? media.title
-						: media.trackNumber
+					(media.title ?? media.trackNumber
 						? `Track N°${media.trackNumber}`
 						: "A song") + (media.album ? ` on ${media.album}` : "");
 				media.artist
@@ -316,7 +314,7 @@ const getStatus = setLoop(function () {
 		req.open(
 			"GET",
 			`${document.location.protocol}//${document.location.hostname}:${
-				document.location.port ? document.location.port : ""
+				document.location.port ?? ""
 			}/requests/status.xml`,
 			true
 		);
